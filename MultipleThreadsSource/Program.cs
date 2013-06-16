@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace MultipleThreadsSource
 {
     class Program
     {
+        private static Threads threads = new Threads();
+
         static void Main(string[] args)
         {
+            //threads.GetCurrentThreadInfo();
+
+            //threads.MainThread();
+
+            //new AccountSample().AccountSampleTest();
+
+            new MonitorSample().MonitorSampleTest();
+
+            Console.ReadLine();
         }
     }
 }
