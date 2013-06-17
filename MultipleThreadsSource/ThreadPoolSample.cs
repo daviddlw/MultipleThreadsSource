@@ -11,13 +11,12 @@ namespace MultipleThreadsSource
     {
         Stopwatch progWatch = new Stopwatch();
         IList<object> objLs = new List<object>();
-        int total = 0;
         public void ShowSample()
         {
             //Simple();
             //Add1000000VarObj();
-            //Add1000000VarObjByMultipleThreads();
-            Add1000000VarObjByMultipleThreadsNew();
+            Add1000000VarObjByMultipleThreads();
+            //Add1000000VarObjByMultipleThreadsNew();
         }
 
         private void Simple()
@@ -40,7 +39,7 @@ namespace MultipleThreadsSource
 
         private void Calculate1To1000000Total()
         {
-            for (int i = 1; i <= 2500000; i++)
+            for (int i = 1; i <= 10000000; i++)
             {
                 object obj = new { id = i, name = string.Format("name{0}", i) };
                 objLs.Add(obj);
@@ -62,22 +61,26 @@ namespace MultipleThreadsSource
             WaitCallback callback = new WaitCallback(AddObj);
             for (int i = 0; i < 10; i++)
             {
-                ThreadPool.QueueUserWorkItem(callback, 100000);
+                ThreadPool.QueueUserWorkItem(callback, 1000000);
             }
             progWatch.Stop();
-            Console.WriteLine("添加1,000,000个匿名对象总共花费了{0}毫秒", progWatch.ElapsedMilliseconds);
+            long sec = progWatch.ElapsedMilliseconds;
+            Console.WriteLine("添加1,000,000个匿名对象总共花费了{0}毫秒", sec);
         }
 
         private void AddObj(object maxCount)
         {
             int count = maxCount == null ? 0 : int.Parse(maxCount.ToString());
-            for (int i = 1; i <= count; i++)
+            lock (objLs)
             {
-                object obj = new { id = i, name = string.Format("name{0}", i) };
-                objLs.Add(obj);
+                for (int i = 1; i <= count; i++)
+                {
+                    object obj = new { id = i, name = string.Format("name{0}", i) };
+                    objLs.Add(obj);
+                }
+
+                Console.WriteLine("此次添加了{0}个匿名对象，共有{1}个匿名对象", count, objLs.Count);
             }
-            total += objLs.Count;
-            Console.WriteLine("此次添加了{0}个匿名对象，共有{1}个匿名对象", objLs.Count, total);
         }
 
         private void AddObj()
@@ -86,12 +89,11 @@ namespace MultipleThreadsSource
             {
                 try
                 {
-                    for (int i = 1; i <= 500000; i++)
+                    for (int i = 1; i <= 200000; i++)
                     {
                         object obj = new { id = i, name = string.Format("name{0}", i) };
                         objLs.Add(obj);
                     }
-                    total += objLs.Count;
                 }
                 catch (SynchronizationLockException ex)
                 {
