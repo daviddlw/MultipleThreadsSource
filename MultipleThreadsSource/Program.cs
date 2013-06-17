@@ -16,9 +16,11 @@ namespace MultipleThreadsSource
 
             //threads.MainThread();
 
-            //new AccountSample().AccountSampleTest();
+            //new AccountSample().ShowAccountSample();
 
-            new MonitorSample().MonitorSampleTest();
+            //new MonitorSample().ShowMonitorSample();
+
+            new ThreadPoolSample().ShowSample();
 
             Console.ReadLine();
         }

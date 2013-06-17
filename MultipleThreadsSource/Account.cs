@@ -64,7 +64,7 @@ namespace MultipleThreadsSource
 
     public class AccountSample
     {
-        public void AccountSampleTest()
+        public void ShowAccountSample()
         {
             Account account = new Account(0);
             Thread[] threadArr = new Thread[10];

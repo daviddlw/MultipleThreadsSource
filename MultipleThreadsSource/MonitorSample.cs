@@ -8,7 +8,7 @@ namespace MultipleThreadsSource
 {
     public class MonitorSample
     {
-        public int MonitorSampleTest()
+        public int ShowMonitorSample()
         {
             Cell cell = new Cell();
             int result = 0;

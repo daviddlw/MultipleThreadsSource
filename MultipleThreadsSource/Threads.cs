@@ -53,10 +53,5 @@ namespace MultipleThreadsSource
                 }
             }
         }
-
-        public void Test()
-        { 
-
-        }
     }
 }
