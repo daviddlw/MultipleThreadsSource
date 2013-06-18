@@ -20,7 +20,9 @@ namespace MultipleThreadsSource
 
             //new MonitorSample().ShowMonitorSample();
 
-            new ThreadPoolSample().ShowSample();
+            //new ThreadPoolSample().ShowSample();
+
+            new TimerSample().ShowSample();
 
             Console.ReadLine();
         }
