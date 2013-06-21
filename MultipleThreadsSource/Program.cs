@@ -22,7 +22,9 @@ namespace MultipleThreadsSource
 
             //new ThreadPoolSample().ShowSample();
 
-            new TimerSample().ShowSample();
+            //new TimerSample().ShowSample();
+
+            new MutexSample().ShowSample();
 
             Console.ReadLine();
         }
