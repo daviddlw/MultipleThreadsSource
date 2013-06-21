@@ -16,15 +16,17 @@ namespace MultipleThreadsSource
 
             //threads.MainThread();
 
-            //new AccountSample().ShowAccountSample();
+            //new AccountSample().ShowSample();
 
-            //new MonitorSample().ShowMonitorSample();
+            //new MonitorSample().ShowSample();
 
             //new ThreadPoolSample().ShowSample();
 
             //new TimerSample().ShowSample();
 
-            new MutexSample().ShowSample();
+            //new MutexSample().ShowSample();
+
+            new InvokeSample().ShowSample();
 
             Console.ReadLine();
         }
